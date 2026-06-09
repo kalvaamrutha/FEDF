@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  
+  /* Weather Theme Colors (Will transition dynamically) */
+  --bg-gradient-start: #1e3c72;
+  --bg-gradient-end: #2a5298;
+  
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-shadow: rgba(0, 0, 0, 0.2);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.45);
+  --accent-color: #38bdf8; /* sky-400 */
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-primary);
+  overflow-x: hidden;
+  transition: background 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  padding: 20px;
+}
+
+#root {
+  width: 100%;
+  max-width: 1200px;
+  min-height: auto;
+  border-inline: none;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* Weather theme variations based on class */
+body.clear-day {
+  --bg-gradient-start: #f59e0b; /* Amber */
+  --bg-gradient-end: #d97706;
+  --accent-color: #fffbeb;
+}
+
+body.clear-night {
+  --bg-gradient-start: #0f172a; /* Slate 900 */
+  --bg-gradient-end: #1e1b4b; /* Indigo 950 */
+  --accent-color: #818cf8;
+}
+
+body.cloudy {
+  --bg-gradient-start: #64748b; /* Slate 500 */
+  --bg-gradient-end: #475569; /* Slate 600 */
+  --accent-color: #cbd5e1;
+}
+
+body.rainy {
+  --bg-gradient-start: #334155; /* Slate 700 */
+  --bg-gradient-end: #0f172a; /* Slate 900 */
+  --accent-color: #60a5fa;
+}
+
+body.snowy {
+  --bg-gradient-start: #e2e8f0; /* Slate 200 */
+  --bg-gradient-end: #94a3b8; /* Slate 400 */
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --glass-bg: rgba(255, 255, 255, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-shadow: rgba(15, 23, 42, 0.08);
+  --accent-color: #0284c7;
+}
+
+body.thunderstorm {
+  --bg-gradient-start: #18181b; /* Zinc 900 */
+  --bg-gradient-end: #09090b; /* Zinc 950 */
+  --accent-color: #fbbf24;
+}
+
+/* Glassmorphism panel base */
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 var(--glass-shadow);
+  padding: 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Micro-animations */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.03); }
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s ease-in-out infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2s ease-in-out infinite;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
